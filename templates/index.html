@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AutoDiag Sonore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">AutoDiag<span class="brand-accent">Sonore</span></span>
+    </div>
+  </header>
+
+  <!-- ÉCRAN 1 — ENREGISTREMENT -->
+  <section id="screen-record" class="screen screen--active">
+    <p class="eyebrow">Diagnostic moteur</p>
+    <h1 class="screen-title">Écoutez votre moteur</h1>
+    <p class="screen-sub">Approchez le téléphone du moteur au ralenti, puis appuyez pour enregistrer 10 à 15 secondes.</p>
+
+    <div class="dial-wrap">
+      <svg class="dial-ring" viewBox="0 0 200 200">
+        <circle class="dial-ring-track" cx="100" cy="100" r="92"></circle>
+        <circle id="dial-ring-progress" class="dial-ring-progress" cx="100" cy="100" r="92"></circle>
+      </svg>
+      <button id="record-btn" class="record-btn" aria-label="Démarrer l'enregistrement">
+        <svg class="mic-icon" viewBox="0 0 24 24" fill="none">
+          <path d="M12 15a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 0 0-7 0v5.5A3.5 3.5 0 0 0 12 15Z" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M6.5 11a5.5 5.5 0 0 0 11 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M12 17v3.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <p id="record-status" class="record-status">Appuyez pour démarrer</p>
+    <p id="record-timer" class="record-timer">00:00</p>
+
+    <p id="record-error" class="record-error" hidden></p>
+  </section>
+
+  <!-- ÉCRAN 2 — ANALYSE -->
+  <section id="screen-loading" class="screen">
+    <div class="pulse-wrap" aria-hidden="true">
+      <span class="pulse-ring pulse-ring--1"></span>
+      <span class="pulse-ring pulse-ring--2"></span>
+      <span class="pulse-ring pulse-ring--3"></span>
+      <span class="pulse-core"></span>
+    </div>
+    <h1 class="screen-title">Analyse en cours</h1>
+    <p id="loading-step" class="loading-step">Extraction des caractéristiques audio…</p>
+  </section>
+
+  <!-- ÉCRAN 3 — RÉSULTAT -->
+  <section id="screen-result" class="screen">
+    <div class="result-top">
+      <p class="eyebrow">Diagnostic</p>
+      <h1 id="result-label" class="result-label">—</h1>
+
+      <div class="confidence-row">
+        <svg class="confidence-gauge" viewBox="0 0 120 120">
+          <circle class="gauge-track" cx="60" cy="60" r="52"></circle>
+          <circle id="gauge-fill" class="gauge-fill" cx="60" cy="60" r="52"></circle>
+          <text id="gauge-value" class="gauge-value" x="60" y="66" text-anchor="middle">0%</text>
+        </svg>
+        <div class="score-bars" id="score-bars"></div>
+      </div>
+    </div>
+
+    <button id="retry-btn" class="retry-btn">Nouveau diagnostic</button>
+
+    <div id="recommendation" class="recommendation">
+      <p id="recommendation-title" class="recommendation-title">—</p>
+      <p id="recommendation-text" class="recommendation-text">—</p>
+    </div>
+  </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
