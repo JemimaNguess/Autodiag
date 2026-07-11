@@ -26,7 +26,7 @@ from flask_cors import CORS
 from audio_features import extract_features
 
 app = Flask(__name__)
-CORS(app, origins = ["https:/autodiag2.vercel.app"])
+CORS(app, origins = ["https://autodiag2.vercel.app"])
 
 MODEL_PATH = os.path.join("models", "autodiag_sonore_model.joblib")
 LABELS_PATH = os.path.join("models", "autodiag_sonore_labels.joblib")
