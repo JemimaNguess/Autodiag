@@ -21,6 +21,7 @@ import uuid
 import joblib
 import numpy as np
 from flask import Flask, jsonify, render_template, request
+from flask_cors import CORS
 
 from audio_features import extract_features
 
